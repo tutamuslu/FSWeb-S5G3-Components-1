@@ -90,6 +90,48 @@ const data = [
   }
 ];
 
+const haberYapici = (haber) => {
+  const containerDiv = document.createElement("div");
+  containerDiv.classList.add("article");
+
+  const baslik = document.createElement("h2");
+  baslik.textContent = haber.baslik;
+  containerDiv.append(baslik);
+
+  const paragraf = document.createElement("p");
+  paragraf.classList.add("tarih")
+  paragraf.textContent = haber.tarih;
+  containerDiv.append(paragraf);
+
+  const paragraf1 = document.createElement("p");
+  paragraf1.textContent = haber.ilkParagraf;
+  containerDiv.append(paragraf1);
+
+  const paragraf2 = document.createElement("p");
+  paragraf2.textContent = haber.ikinciParagraf;
+  containerDiv.append(paragraf2);
+
+  const paragraf3 = document.createElement("p");
+  paragraf3.textContent = haber.ucuncuParagraf;
+  containerDiv.append(paragraf3);
+
+  const span = document.createElement("span");
+  span.classList.add("expandButton");
+  span.textContent = "+";
+  span.addEventListener("click", (e) => {
+    e.target.parentElement.classList.toggle("article-open");
+
+  });
+
+  containerDiv.append(span);
+
+  return containerDiv;
+}
+
+data.forEach((haber) => {
+  document.querySelector(".articles").append(haberYapici(haber));
+})
+
 /*
   Adım 1: Haber oluşturmak için 'haberYapici' adında bir bileşen(component) oluşturun.
   Bileşeniniz, argümanı haberleri içeren dizi olarak alan bir fonksiyon olacak,
